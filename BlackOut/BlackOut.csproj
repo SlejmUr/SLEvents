@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputType>Library</OutputType>
+
+		<AssemblyName>BlackOut</AssemblyName>
+		<RootNamespace>BlackOut</RootNamespace>
+
+		<Configurations>Release</Configurations>
+		<Platforms>AnyCPU</Platforms>
+		<Copyright>SlejmUr</Copyright>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- Disable automatic generation of version attribute -->
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="EXILED" Version="8.7.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp" HintPath="G:\VS\SCP_SL\AllRef\Assembly-CSharp.dll">
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="CommandSystem.Core" HintPath="G:\VS\SCP_SL\AllRef\CommandSystem.Core.dll">
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="Mirror" HintPath="G:\VS\SCP_SL\AllRef\Mirror.dll">
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="PluginAPI">
+		  <HintPath>..\..\AllRef\PluginAPI.dll</HintPath>
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="Pooling" HintPath="G:\VS\SCP_SL\AllRef\Pooling.dll">
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule" HintPath="G:\VS\SCP_SL\AllRef\UnityEngine.CoreModule.dll">
+		  <Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule" HintPath="G:\VS\SCP_SL\AllRef\UnityEngine.PhysicsModule.dll">
+		  <Private>False</Private>
+		</Reference>
+	</ItemGroup>
+</Project>
