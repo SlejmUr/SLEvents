@@ -47,7 +47,7 @@ namespace Realistic096.Commands
                         if (name == "SpawnLoot" && bool.TryParse(value, out var bool_result))
                         {
                             // Currently doesnt supported!
-                            //Main.Instance.Config.SpawnLoot = bool_result;
+                            Main.Instance.Config.SpawnLoot = bool_result;
                             IsSet = true;
                         }
                         if (name == "CanOtherSCPPlay" && bool.TryParse(value, out bool_result))

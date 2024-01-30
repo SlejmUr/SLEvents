@@ -13,6 +13,7 @@
 		<Copyright>SlejmUr</Copyright>
 		<IsPackable>false</IsPackable>
 		<DebugType>none</DebugType>
+		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -29,6 +30,12 @@
 	<ItemGroup>
 		<Reference Include="UnityEngine.CoreModule" HintPath="..\AllRef\UnityEngine.CoreModule.dll">
 		  <Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine" HintPath="..\AllRef\UnityEngine.dll">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule" HintPath="..\AllRef\UnityEngine.PhysicsModule.dll">
+			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 </Project>

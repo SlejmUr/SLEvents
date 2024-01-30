@@ -64,6 +64,8 @@ namespace Realistic096
                 scp096Role.AddTarget(player);
             }
             // spawn more loot?
+            if (Main.Instance.Config.SpawnLoot)
+                LootSpawner.SpawnLoot();
 
             // tp 096 to escape door
             var door = Door.List.Where(x => x.Type == DoorType.EscapeSecondary).First();
