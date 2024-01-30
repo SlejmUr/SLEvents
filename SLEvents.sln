@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Realistic096", "Realistic09
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackOut", "BlackOut\BlackOut.csproj", "{23164CAF-2442-4BC8-93AD-77FBFD913AAF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiny", "Tiny\Tiny.csproj", "{646918A5-18E6-4A14-A755-DA1730A9A08B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{23164CAF-2442-4BC8-93AD-77FBFD913AAF}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{23164CAF-2442-4BC8-93AD-77FBFD913AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23164CAF-2442-4BC8-93AD-77FBFD913AAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

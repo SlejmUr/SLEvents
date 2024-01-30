@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputType>Library</OutputType>
+
+		<AssemblyName>Tiny</AssemblyName>
+		<RootNamespace>Tiny</RootNamespace>
+
+		<Configurations>Release</Configurations>
+		<Platforms>AnyCPU</Platforms>
+		<Copyright>SlejmUr</Copyright>
+		<IsPackable>false</IsPackable>
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<!-- Disable automatic generation of version attribute -->
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="EXILED" Version="8.7.0" ExcludeAssets="RUNTIME"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="UnityEngine.CoreModule" HintPath="..\AllRef\UnityEngine.CoreModule.dll">
+		  <Private>False</Private>
+		</Reference>
+	</ItemGroup>
+</Project>
