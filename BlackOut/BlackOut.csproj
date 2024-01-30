@@ -12,6 +12,7 @@
 		<Platforms>AnyCPU</Platforms>
 		<Copyright>SlejmUr</Copyright>
 		<IsPackable>false</IsPackable>
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -22,31 +23,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="EXILED" Version="8.7.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="Assembly-CSharp" HintPath="G:\VS\SCP_SL\AllRef\Assembly-CSharp.dll">
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="CommandSystem.Core" HintPath="G:\VS\SCP_SL\AllRef\CommandSystem.Core.dll">
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="Mirror" HintPath="G:\VS\SCP_SL\AllRef\Mirror.dll">
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="PluginAPI">
-		  <HintPath>..\..\AllRef\PluginAPI.dll</HintPath>
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="Pooling" HintPath="G:\VS\SCP_SL\AllRef\Pooling.dll">
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.CoreModule" HintPath="G:\VS\SCP_SL\AllRef\UnityEngine.CoreModule.dll">
-		  <Private>False</Private>
-		</Reference>
-		<Reference Include="UnityEngine.PhysicsModule" HintPath="G:\VS\SCP_SL\AllRef\UnityEngine.PhysicsModule.dll">
-		  <Private>False</Private>
-		</Reference>
+	  <PackageReference Include="EXILED" Version="8.7.0" ExcludeAssets="RUNTIME" />
 	</ItemGroup>
 </Project>
