@@ -10,7 +10,7 @@ namespace Realistic096
         public override string Author => "SlejmUr";
         public override string Name => "Realistic096";
         public override string Prefix => "Realistic096";
-        public override Version Version => new Version(0,1);
+        public override Version Version => new Version(0,2);
         public Eventers Eventers;
         #endregion
 
