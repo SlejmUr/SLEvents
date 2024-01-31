@@ -20,7 +20,7 @@ namespace Realistic096.Commands
                 return false;
             }
 
-            Main.Instance.Config.IsEnabled = false;
+            Main.Instance.Config.EventEnabled = false;
 
             response = "Event Deactivated";
             return true;

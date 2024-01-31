@@ -14,7 +14,7 @@ namespace Realistic096
     {
         public void OnRoundStart()
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
 
             var lifts = Lift.List;
@@ -122,7 +122,7 @@ namespace Realistic096
 
         public void SCP_096_CalmingDown(CalmingDownEventArgs args)
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
             args.IsAllowed = true;
             args.ShouldClearEnragedTimeLeft = true;
@@ -135,7 +135,7 @@ namespace Realistic096
 
         public void Player_Hurt(HurtingEventArgs args)
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
             if (args.Player.Role.Type == PlayerRoles.RoleTypeId.Scp096)
                 args.IsAllowed = false;
@@ -158,7 +158,7 @@ namespace Realistic096
                     player.Broadcast(broadcast);
                 }
                 Round.EndRound(true);
-                Main.Instance.Config.IsEnabled = false;
+                Main.Instance.Config.EventEnabled = false;
             }
 
         }

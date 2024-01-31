@@ -1,16 +1,16 @@
 ﻿using System;
 using CommandSystem;
 
-namespace BlackOut.Commands
+namespace TDM.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    public class DeActivateCommand : ICommand
+    public class SetInventoryCommand : ICommand
     {
-        public string Command => "DeActivateBlackOut";
+        public string Command => "SetInventoryTDM";
 
-        public string[] Aliases => new string[] { "debo" };
+        public string[] Aliases => new string[] { "setinvtdm" };
 
-        public string Description => "DeActivate BlackOut Event";
+        public string Description => "Set Inventory for TDM Event";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -20,9 +20,9 @@ namespace BlackOut.Commands
                 return false;
             }
 
-            Main.Instance.Config.EventEnabled = false;
+            
 
-            response = "Event Deactivated";
+            response = "Currently not works!";
             return true;
         }
     }

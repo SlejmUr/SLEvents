@@ -8,7 +8,7 @@ namespace Tiny
     {
         public void OnRoundStart()
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
 
 

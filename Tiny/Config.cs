@@ -6,5 +6,6 @@ namespace Tiny
     {
         public bool IsEnabled { get; set; }
         public bool Debug { get; set; }
+        public bool EventEnabled { get; set; }
     }
 }

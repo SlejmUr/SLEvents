@@ -1,5 +1,4 @@
-﻿
-using Exiled.Events.EventArgs.Server;
+﻿using Exiled.Events.EventArgs.Server;
 using Exiled.Events.EventArgs.Player;
 using Exiled.API.Features;
 using System.Linq;
@@ -12,7 +11,7 @@ namespace BlackOut
     {
         public void OnRoundStart()
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
 
 
@@ -92,7 +91,7 @@ namespace BlackOut
 
         public void Player_Spawned(SpawnedEventArgs args)
         {
-            if (!Main.Instance.Config.IsEnabled)
+            if (!Main.Instance.Config.EventEnabled)
                 return;
             if (Main.Instance.Config.Fallout_Round)
             {
@@ -139,7 +138,7 @@ namespace BlackOut
                         player.Broadcast(broadcast);
                     }
                     Round.EndRound(true);
-                    Main.Instance.Config.IsEnabled = false;
+                    Main.Instance.Config.EventEnabled = false;
                 }
             }
         }

@@ -20,7 +20,7 @@ namespace BlackOut.Commands
                 return false;
             }
 
-            Main.Instance.Config.IsEnabled = true;
+            Main.Instance.Config.EventEnabled = true;
 
             response = "Event Activated!";
             return true;

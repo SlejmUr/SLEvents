@@ -1,16 +1,16 @@
 ﻿using System;
 using CommandSystem;
 
-namespace BlackOut.Commands
+namespace TDM.Commands
 {
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
     public class DeActivateCommand : ICommand
     {
-        public string Command => "DeActivateBlackOut";
+        public string Command => "DeActivateTDM";
 
-        public string[] Aliases => new string[] { "debo" };
+        public string[] Aliases => new string[] { "detdm" };
 
-        public string Description => "DeActivate BlackOut Event";
+        public string Description => "DeActivate TDM Event";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

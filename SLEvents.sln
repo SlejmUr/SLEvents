@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlackOut", "BlackOut\BlackO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiny", "Tiny\Tiny.csproj", "{646918A5-18E6-4A14-A755-DA1730A9A08B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDM", "TDM\TDM.csproj", "{D075BFD9-01D7-452C-96B8-64A117D6740C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{646918A5-18E6-4A14-A755-DA1730A9A08B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D075BFD9-01D7-452C-96B8-64A117D6740C}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{D075BFD9-01D7-452C-96B8-64A117D6740C}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{D075BFD9-01D7-452C-96B8-64A117D6740C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D075BFD9-01D7-452C-96B8-64A117D6740C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
