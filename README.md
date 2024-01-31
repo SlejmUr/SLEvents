@@ -1,7 +1,7 @@
 # SCP:SL Event collection
 SCP:SL Event collection for Kadava's server
 
-Currently featuring:\
+Currently featuring:
 - BlackOut
 - Realistic096
 - Tiny
