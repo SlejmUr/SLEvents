@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CommandSystem;
+using Exiled.API.Features;
 
 namespace TDM.Commands
 {
@@ -20,10 +23,55 @@ namespace TDM.Commands
                 return false;
             }
 
-            
+            var argList = arguments.ToList();
+            if (argList.Count != 2)
+            {
+                response = "Argument must use as:\nsetinvtdm TeamNumber Id\n Where the TeamNumber either 1 or 2\nId is the User Id from admin panel. (example: [2] SlejmUr , here we use the 2)";
+                return false;
+            }
 
-            response = "Currently not works!";
-            return true;
+            var user = Player.List.Where(x=>x.Id == int.Parse(argList[1])).First();
+            if (int.TryParse(argList[0], out int result))
+            {
+                if (result == 1)
+                {
+                    List<ItemType> itemTypes = new List<ItemType>();
+                    var list = user.Inventory.UserInventory.Items.Values.ToList();
+                    foreach (var item in list)
+                    {
+                        itemTypes.Add(item.ItemTypeId);
+                        if (Main.Instance.Config.Debug)
+                        {
+                            Log.Debug(item.ItemTypeId.ToString() + " added to Team1 Inventory");
+                        }
+                    }
+
+                    Main.Instance.Config.Team1Items = itemTypes;
+                    response = "Team 1 Items set!";
+                    return true;
+                }
+                if (result == 2)
+                {
+                    List<ItemType> itemTypes = new List<ItemType>();
+                    var list = user.Inventory.UserInventory.Items.Values.ToList();
+                    foreach (var item in list)
+                    {
+                        itemTypes.Add(item.ItemTypeId);
+                        if (Main.Instance.Config.Debug)
+                        {
+                            Log.Debug(item.ItemTypeId.ToString() + " added to Team2 Inventory");
+                        }
+                    }
+
+                    Main.Instance.Config.Team2Items = itemTypes;
+                    response = "Team 2 Items set!";
+                    return true;
+                }
+            }
+
+
+            response = "Something off! Please make sure you";
+            return false;
         }
     }
 }

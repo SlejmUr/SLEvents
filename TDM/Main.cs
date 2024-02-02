@@ -10,7 +10,7 @@ namespace TDM
         public override string Author => "SlejmUr";
         public override string Name => "TDM";
         public override string Prefix => "TDM";
-        public override Version Version => new Version(0,1);
+        public override Version Version => new Version(0,2);
         public Eventers Eventers;
         #endregion
 

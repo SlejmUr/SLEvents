@@ -12,7 +12,9 @@ namespace Realistic096
         static ItemType GetRandomPickup()
         {
             int number = Random.Range(0, 10);
-            return number switch
+            ItemType itemType = ItemType.Adrenaline;
+            /*
+            ItemType itemType = number switch
             {
                 0 => ItemType.GrenadeFlash,
                 1 => ItemType.KeycardChaosInsurgency,
@@ -25,7 +27,43 @@ namespace Realistic096
                 8 => ItemType.ArmorLight,
                 9 => ItemType.ArmorHeavy,
                 _ => ItemType.Adrenaline
-            };
+            };*/
+            switch (number)
+            {
+                case 0:
+                    itemType = ItemType.GrenadeFlash;
+                    break;
+                case 1:
+                    itemType = ItemType.KeycardChaosInsurgency;
+                    break;
+                case 2:
+                    itemType = ItemType.KeycardFacilityManager;
+                    break;
+                case 3:
+                    itemType = ItemType.KeycardGuard;
+                    break;
+                case 4:
+                    itemType = ItemType.KeycardMTFOperative;
+                    break;
+                case 5:
+                    itemType = ItemType.KeycardJanitor;
+                    break;
+                case 6:
+                    itemType = ItemType.Ammo556x45;
+                    break;
+                case 7:
+                    itemType = ItemType.Ammo9x19;
+                    break;
+                case 8:
+                    itemType = ItemType.ArmorLight;
+                    break;
+                case 9:
+                    itemType = ItemType.ArmorHeavy;
+                    break;
+                default:
+                    break;
+            }
+            return itemType;
         }
         public static void SpawnLoot()
         {
@@ -38,7 +76,7 @@ namespace Realistic096
                     var randomDoor = room.Doors.GetRandomValue();
                     Pickup pickup = Pickup.CreateAndSpawn(GetRandomPickup(), randomDoor.Position + (randomDoor.Rotation * Vector3.back), Quaternion.Euler(0, 0, 0));
                     pickup.GameObject.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), Random.Range(-100, 100));
-                    if (pickup is KeycardPickup keycardPickup && pickup.Type == ItemType.KeycardJanitor)
+                    if (pickup.Type == ItemType.KeycardJanitor && pickup is KeycardPickup keycardPickup)
                     {
                         int chance = Random.Range(0, 100);
                         if (chance == 66 && !FunnyKeycardSpawned)

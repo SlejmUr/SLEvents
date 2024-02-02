@@ -13,7 +13,6 @@
 		<Copyright>SlejmUr</Copyright>
 		<IsPackable>false</IsPackable>
 		<DebugType>none</DebugType>
-		<LangVersion>10.0</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -24,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EXILED" Version="8.7.0" ExcludeAssets="RUNTIME"/>
+		<PackageReference Include="EXILED" Version="8.7.3" ExcludeAssets="RUNTIME"/>
 	</ItemGroup>
 
 	<ItemGroup>
