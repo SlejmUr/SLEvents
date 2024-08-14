@@ -11,5 +11,6 @@ namespace BlackOut
         public bool Lotus_Round { get; set; }
         public bool JDuff_Round { get; set; }
         public bool Fallout_Round { get; set; }
+        public bool Skelle_Round { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Tiny
                 return;
 
 
-            foreach (var item in Player.List.Where(x=>x.IsHuman))
+            foreach (var item in Player.List)
             {
                 item.Scale = Vector3.one * 0.7f;
             }

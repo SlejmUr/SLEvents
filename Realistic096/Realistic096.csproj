@@ -23,14 +23,20 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EXILED" Version="8.7.3" ExcludeAssets="RUNTIME"/>
+		<PackageReference Include="EXILED" Version="8.9.11" ExcludeAssets="RUNTIME"/>
 	</ItemGroup>
 
 	<ItemGroup>
 		<Reference Include="UnityEngine.CoreModule" HintPath="..\AllRef\UnityEngine.CoreModule.dll">
 		  <Private>False</Private>
 		</Reference>
+		<Reference Include="Assembly-CSharp-firstpass" HintPath="..\AllRef\Assembly-CSharp-firstpass.dll">
+			<Private>False</Private>
+		</Reference>
 		<Reference Include="UnityEngine" HintPath="..\AllRef\UnityEngine.dll">
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Mirror" HintPath="..\AllRef\Mirror.dll">
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.PhysicsModule" HintPath="..\AllRef\UnityEngine.PhysicsModule.dll">

@@ -7,11 +7,14 @@ using Exiled.API.Enums;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Doors;
+using MEC;
 
 namespace Realistic096
 {
     internal class Eventers
     {
+        CoroutineHandle _SCP096_TargetReflesh;
+
         public void OnRoundStart()
         {
             if (!Main.Instance.Config.EventEnabled)
@@ -46,6 +49,8 @@ namespace Realistic096
             }
             if (scp096Role == null) //drop error
                 return;
+            scp096Role.Owner.MaxHealth = 5000;
+            scp096Role.Owner.Health = 5000;
             foreach (var player in players)
             {
                 if (scp096Role.Owner == player)
@@ -73,12 +78,19 @@ namespace Realistic096
 
             // TP Player who are in light
             var randomHeavy = Room.List.Where(x => x.Zone == ZoneType.HeavyContainment);
-            foreach (var player in players)
+            foreach (var player in players.Where(x=> x.CurrentRoom.Zone == ZoneType.LightContainment))
             {
                 var tp = randomHeavy.GetRandomValue();
-                if (player.CurrentRoom.Zone == ZoneType.LightContainment)
-                    player.Teleport(tp);
+                player.Teleport(tp);
             }
+
+            _SCP096_TargetReflesh = MEC.Timing.CallContinuously(5, () => {
+
+                foreach (var item in Player.List.Where(x => x.IsHuman && x.IsAlive))
+                {
+                    scp096Role.AddTarget(item);
+                }
+            });
 
             // decont
             DecontaminationController.Singleton.DecontaminationOverride = DecontaminationController.DecontaminationStatus.Forced;
@@ -124,13 +136,15 @@ namespace Realistic096
         {
             if (!Main.Instance.Config.EventEnabled)
                 return;
-            args.IsAllowed = true;
-            args.ShouldClearEnragedTimeLeft = true;
-            var players = Player.List.Where(x=>x.IsAlive && x.IsHuman).ToList();
-            foreach (var item in players)
+            MEC.Timing.CallDelayed(5, () => 
             {
-                args.Scp096.AddTarget(item);
-            }
+                var players = Player.List.Where(x => x.IsAlive && x.IsHuman).ToList();
+                foreach (var item in players)
+                {
+                    args.Scp096.AddTarget(item);
+                }
+
+            });
         }
 
         public void Player_Hurt(HurtingEventArgs args)
@@ -138,11 +152,13 @@ namespace Realistic096
             if (!Main.Instance.Config.EventEnabled)
                 return;
             if (args.Player.Role.Type == PlayerRoles.RoleTypeId.Scp096)
-                args.IsAllowed = false;
+                args.DamageHandler.Damage = args.DamageHandler.Damage * 0.01f;
         }
 
         public void Player_Died(DiedEventArgs args)
         {
+            if (!Main.Instance.Config.EventEnabled)
+                return;
             var players = Player.List.Where(x=>x.IsHuman && x.IsAlive).ToList();
             if (players.Count() == 1)
             {
@@ -153,12 +169,15 @@ namespace Realistic096
                     Type = Broadcast.BroadcastFlags.Normal,
                     Content = "Congratulation for " + players[0].DisplayNickname + " winning!"
                 };
-                foreach (var player in Player.List)
-                {
-                    player.Broadcast(broadcast);
-                }
-                Round.EndRound(true);
-                Main.Instance.Config.EventEnabled = false;
+
+                MEC.Timing.CallDelayed(3, () => {
+                    foreach (var player in Player.List)
+                    {
+                        player.Broadcast(broadcast);
+                    }
+                    Main.Instance.Config.EventEnabled = false;
+                });
+                MEC.Timing.KillCoroutines(_SCP096_TargetReflesh);
             }
 
         }

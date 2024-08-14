@@ -38,6 +38,7 @@ namespace BlackOut.Commands
                         Main.Instance.Config.Lotus_Round = !Main.Instance.Config.Lotus_Round;
                         Main.Instance.Config.Fallout_Round = false;
                         Main.Instance.Config.JDuff_Round = false;
+                        Main.Instance.Config.Skelle_Round = false;
                         IsSet = true;
                         if (Main.Instance.Config.Lotus_Round)
                             whatSet = " - Lotus Round";
@@ -49,6 +50,7 @@ namespace BlackOut.Commands
                         Main.Instance.Config.Fallout_Round = !Main.Instance.Config.Fallout_Round;
                         Main.Instance.Config.Lotus_Round = false;
                         Main.Instance.Config.JDuff_Round = false;
+                        Main.Instance.Config.Skelle_Round = false;
                         IsSet = true;
                         if (Main.Instance.Config.Fallout_Round)
                             whatSet = " - Fallout Round";
@@ -60,17 +62,31 @@ namespace BlackOut.Commands
                         Main.Instance.Config.JDuff_Round = !Main.Instance.Config.JDuff_Round;
                         Main.Instance.Config.Lotus_Round = false;
                         Main.Instance.Config.Fallout_Round = false;
+                        Main.Instance.Config.Skelle_Round = false;
                         IsSet = true;
                         if (Main.Instance.Config.JDuff_Round)
                             whatSet = " - JDUFF Round";
                         else
                             whatSet = " - JDUFF Round Disabled";
                     }
+                    if (arg == "skelle")
+                    {
+                        Main.Instance.Config.Skelle_Round = !Main.Instance.Config.Skelle_Round;
+                        Main.Instance.Config.JDuff_Round = false;
+                        Main.Instance.Config.Lotus_Round = false;
+                        Main.Instance.Config.Fallout_Round = false;
+                        IsSet = true;
+                        if (Main.Instance.Config.Skelle_Round)
+                            whatSet = " - Skelle Round";
+                        else
+                            whatSet = " - Skelle Round Disabled";
+                    }
                     if (arg == "default")
                     {
                         Main.Instance.Config.JDuff_Round = false;
                         Main.Instance.Config.Lotus_Round = false;
                         Main.Instance.Config.Fallout_Round = false;
+                        Main.Instance.Config.Skelle_Round = false;
                         IsSet = true;
                         whatSet = " - Default Round";
                     }

@@ -4,6 +4,7 @@ using Exiled.API.Features.Pickups;
 using Random = UnityEngine.Random;
 using System.Linq;
 using UnityEngine;
+using System;
 
 namespace Realistic096
 {
@@ -11,7 +12,7 @@ namespace Realistic096
     {
         static ItemType GetRandomPickup()
         {
-            int number = Random.Range(0, 10);
+            int number = Random.Range(0, 11);
             ItemType itemType = ItemType.Adrenaline;
             /*
             ItemType itemType = number switch
@@ -34,19 +35,19 @@ namespace Realistic096
                     itemType = ItemType.GrenadeFlash;
                     break;
                 case 1:
-                    itemType = ItemType.KeycardChaosInsurgency;
+                    itemType = ItemType.AntiSCP207;
                     break;
                 case 2:
-                    itemType = ItemType.KeycardFacilityManager;
+                    itemType = ItemType.SCP207;
                     break;
                 case 3:
-                    itemType = ItemType.KeycardGuard;
+                    itemType = ItemType.Jailbird;
                     break;
                 case 4:
-                    itemType = ItemType.KeycardMTFOperative;
+                    itemType = ItemType.Coin;
                     break;
                 case 5:
-                    itemType = ItemType.KeycardJanitor;
+                    itemType = ItemType.MicroHID;
                     break;
                 case 6:
                     itemType = ItemType.Ammo556x45;
@@ -55,10 +56,13 @@ namespace Realistic096
                     itemType = ItemType.Ammo9x19;
                     break;
                 case 8:
-                    itemType = ItemType.ArmorLight;
+                    itemType = ItemType.Medkit;
                     break;
                 case 9:
                     itemType = ItemType.ArmorHeavy;
+                    break;
+                case 10:
+                    itemType = ItemType.SCP500;
                     break;
                 default:
                     break;
@@ -68,29 +72,40 @@ namespace Realistic096
         public static void SpawnLoot()
         {
             bool FunnyKeycardSpawned = false;
-            for (int i = 0; i <= 10; i++)
+            int hcz_count = Room.List.Where(x => x.Zone == Exiled.API.Enums.ZoneType.HeavyContainment).Count();
+            for (int i = 0; i < hcz_count; i++)
             {
                 var room = Room.List.Where(a => a.Players.ToList().Count <= 0 && a.Zone == Exiled.API.Enums.ZoneType.HeavyContainment).GetRandomValue();
-                for (int j = 0; j <= 3; j++)
+                if (room.Type == Exiled.API.Enums.RoomType.Pocket)
+                    continue;
+                for (int j = 0; j <= 10; j++)
                 {
-                    var randomDoor = room.Doors.GetRandomValue();
-                    Pickup pickup = Pickup.CreateAndSpawn(GetRandomPickup(), randomDoor.Position + (randomDoor.Rotation * Vector3.back), Quaternion.Euler(0, 0, 0));
-                    pickup.GameObject.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), Random.Range(-100, 100));
-                    if (pickup.Type == ItemType.KeycardJanitor && pickup is KeycardPickup keycardPickup)
+                    try
                     {
-                        int chance = Random.Range(0, 100);
-                        if (chance == 66 && !FunnyKeycardSpawned)
+                        var randomDoor = room.Doors.GetRandomValue();
+                        Pickup pickup = Pickup.CreateAndSpawn(GetRandomPickup(), randomDoor.Position + (randomDoor.Rotation * Vector3.back), Quaternion.Euler(0, 0, 0));
+                        pickup.GameObject.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), Random.Range(-100, 100));
+                        if (pickup.Type == ItemType.KeycardJanitor && pickup is KeycardPickup keycardPickup)
                         {
-                            // Funny keycard
-                            keycardPickup.Permissions |= Exiled.API.Enums.KeycardPermissions.ContainmentLevelThree;
-                            keycardPickup.Permissions |= Exiled.API.Enums.KeycardPermissions.ArmoryLevelOne;
-                            FunnyKeycardSpawned = true;
+                            int chance = Random.Range(0, 100);
+                            if (chance == 66 && !FunnyKeycardSpawned)
+                            {
+                                // Funny keycard
+                                keycardPickup.Permissions |= Exiled.API.Enums.KeycardPermissions.ContainmentLevelThree;
+                                keycardPickup.Permissions |= Exiled.API.Enums.KeycardPermissions.ArmoryLevelOne;
+                                FunnyKeycardSpawned = true;
+                            }
+                        }
+                        if (pickup is AmmoPickup ammo)
+                        {
+                            ammo.Ammo = (ushort)Random.Range(30, 90);
                         }
                     }
-                    if (pickup is AmmoPickup ammo)
+                    catch (Exception ex)
                     {
-                        ammo.Ammo = (ushort)Random.Range(15, 30);
+                        Log.Info(ex.Message + "\n" + ex);
                     }
+
                 }
             }
         }

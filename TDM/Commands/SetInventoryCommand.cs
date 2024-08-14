@@ -70,7 +70,7 @@ namespace TDM.Commands
             }
 
 
-            response = "Something off! Please make sure you";
+            response = "Something off!";
             return false;
         }
     }

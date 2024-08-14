@@ -62,6 +62,22 @@ namespace BlackOut
                     item.Role.Set(PlayerRoles.RoleTypeId.ClassD);
                 }
             }
+            if (Main.Instance.Config.Skelle_Round)
+            {
+                var scps = Player.List.Where(x => x.IsScp).ToList();
+                foreach (var item in scps)
+                {
+                    item.Role.Set(PlayerRoles.RoleTypeId.Scp3114);
+                }
+                if (scps.Count > 2)
+                {
+                    scps = scps.Skip(2).ToList();
+                    foreach (var item in scps)
+                    {
+                        item.Role.Set(PlayerRoles.RoleTypeId.ClassD);
+                    }
+                }
+            }
             if (Main.Instance.Config.Fallout_Round)
             {
                 var scps = Player.List.Where(x => x.IsScp).ToList();
@@ -79,13 +95,7 @@ namespace BlackOut
                     }
                 }
             }
-
-
-            foreach (var item in Player.List)
-            {
-                if (item.IsHuman)
-                    item.AddItem(ItemType.Flashlight);
-            }
+            
         }
 
 
@@ -95,16 +105,31 @@ namespace BlackOut
                 return;
             if (Main.Instance.Config.Fallout_Round)
             {
-                if (args.Reason == Exiled.API.Enums.SpawnReason.Respawn)
-                {
-                    args.Player.AddItem(ItemType.Lantern);
-                }
+                MEC.Timing.CallDelayed(3, () => {
+                    if (args.Reason == Exiled.API.Enums.SpawnReason.ForceClass | args.Reason == Exiled.API.Enums.SpawnReason.Respawn | args.Reason == Exiled.API.Enums.SpawnReason.RoundStart | args.Reason == Exiled.API.Enums.SpawnReason.LateJoin)
+                    {
+                        args.Player.AddItem(ItemType.Lantern);
+                    }
+
+                });
+            }
+            else
+            {
+                MEC.Timing.CallDelayed(3, () => {
+                    if (args.Reason == Exiled.API.Enums.SpawnReason.ForceClass | args.Reason == Exiled.API.Enums.SpawnReason.Respawn | args.Reason == Exiled.API.Enums.SpawnReason.RoundStart | args.Reason == Exiled.API.Enums.SpawnReason.LateJoin)
+                    {
+                        args.Player.AddItem(ItemType.Flashlight);
+                    }
+
+                });
             }
 
         }
 
         public void Respawning(RespawningTeamEventArgs args)
         {
+            if (!Main.Instance.Config.EventEnabled)
+                return;
             if (Main.Instance.Config.JDuff_Round || Main.Instance.Config.Lotus_Round)
             {
                 args.IsAllowed = false;
@@ -112,6 +137,8 @@ namespace BlackOut
         }
         public void Player_Pickup(PickingUpItemEventArgs args)
         {
+            if (!Main.Instance.Config.EventEnabled)
+                return;
             if (Main.Instance.Config.Lotus_Round)
             {
                 if (IsWeaponOrAmmo(args.Pickup.Type))
@@ -121,6 +148,8 @@ namespace BlackOut
 
         public void Warhead_Start(StartingEventArgs args)
         {
+            if (!Main.Instance.Config.EventEnabled)
+                return;
             if (Main.Instance.Config.Lotus_Round)
             {
                 if (args.Player.Role.Team != PlayerRoles.Team.SCPs && !args.IsAuto)
@@ -133,11 +162,11 @@ namespace BlackOut
                         Type = Broadcast.BroadcastFlags.Normal,
                         Content = "Congratulation for " + args.Player.DisplayNickname + " winning!"
                     };
+                    
                     foreach (var player in Player.List)
                     {
                         player.Broadcast(broadcast);
-                    }
-                    Round.EndRound(true);
+                    };
                     Main.Instance.Config.EventEnabled = false;
                 }
             }

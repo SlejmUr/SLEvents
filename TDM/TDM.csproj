@@ -23,7 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="EXILED" Version="8.7.3" ExcludeAssets="RUNTIME" />
+		<PackageReference Include="EXILED" Version="8.9.11" ExcludeAssets="RUNTIME" />
 	</ItemGroup>
 
 	<ItemGroup>
