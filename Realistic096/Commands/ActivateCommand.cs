@@ -1,5 +1,6 @@
 ﻿using System;
 using CommandSystem;
+using Exiled.Permissions.Extensions;
 
 namespace Realistic096.Commands
 {
@@ -14,7 +15,7 @@ namespace Realistic096.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.CheckPermission( PlayerPermissions.GameplayData ))
+            if (!sender.CheckPermission("realistic096_event"))
             {
                 response = "You dont have permission to activate the event!";
                 return false;

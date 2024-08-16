@@ -1,5 +1,6 @@
 ﻿using System;
 using CommandSystem;
+using Exiled.Permissions.Extensions;
 
 namespace Tiny.Commands
 {
@@ -14,7 +15,7 @@ namespace Tiny.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.CheckPermission( PlayerPermissions.GameplayData ))
+            if (!sender.CheckPermission("tiny_event"))
             {
                 response = "You dont have permission to deactivate the event!";
                 return false;

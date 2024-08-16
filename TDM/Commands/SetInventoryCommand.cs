@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
+using Exiled.Permissions.Extensions;
 
 namespace TDM.Commands
 {
@@ -17,7 +18,7 @@ namespace TDM.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.CheckPermission( PlayerPermissions.GameplayData ))
+            if (!sender.CheckPermission("tdm_event"))
             {
                 response = "You dont have permission to deactivate the event!";
                 return false;

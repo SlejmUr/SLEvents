@@ -1,5 +1,6 @@
 ﻿using System;
 using CommandSystem;
+using Exiled.Permissions.Extensions;
 
 namespace BlackOut.Commands
 {
@@ -14,7 +15,7 @@ namespace BlackOut.Commands
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
-            if (!sender.CheckPermission( PlayerPermissions.GameplayData ))
+            if (!sender.CheckPermission("blackout_event"))
             {
                 response = "You dont have permission to activate the event!";
                 return false;
