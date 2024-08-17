@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Exiled.API.Features;
 using Exiled.API.Features.Doors;
 using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Server;
-using Exiled.Events.Features;
 using UnityEngine;
 
 namespace TDM
@@ -21,8 +19,11 @@ namespace TDM
             var team2_count = players - team1_count;
             var team1 = Player.List.Take(team2_count).ToList();
             var team2 = Player.List.Skip(team1_count).Take(team2_count).ToList();
-            Team1Set(team1);
-            Team2Set(team2);
+            MEC.Timing.CallDelayed(3, () =>
+            {
+                Team1Set(team1);
+                Team2Set(team2);
+            });
         }
 
 
@@ -36,8 +37,12 @@ namespace TDM
             var team2_count = players - team1_count;
             var team1 = Player.List.Take(team2_count).ToList();
             var team2 = Player.List.Skip(team1_count).Take(team2_count).ToList();
-            Team1Set(team1);
-            Team2Set(team2);
+            MEC.Timing.CallDelayed(3, ()=> 
+            {
+                Team1Set(team1);
+                Team2Set(team2);
+            });
+
         }
 
 
@@ -64,6 +69,7 @@ namespace TDM
                     player.Role.Set( PlayerRoles.RoleTypeId.NtfSpecialist);
                 player.Teleport(room1);
                 player.ClearInventory();
+                player.Scale = Vector3.one;
                 var myPreference = preferences.Where(x => x.Key == player).First().Value;
                 if (Main.Instance.Config.Team1Items.Count != 0)
                 {
@@ -98,6 +104,7 @@ namespace TDM
                     player.Role.Set(PlayerRoles.RoleTypeId.ChaosConscript);
                 player.Teleport(room2);
                 player.ClearInventory();
+                player.Scale = Vector3.one;
                 var myPreference = preferences.Where(x => x.Key == player).First().Value;
                 if (Main.Instance.Config.Team2Items.Count != 0)
                 {

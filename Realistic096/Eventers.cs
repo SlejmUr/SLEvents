@@ -77,7 +77,7 @@ namespace Realistic096
             scp096Role.Owner.Teleport(door);
 
             // TP Player who are in light
-            var randomHeavy = Room.List.Where(x => x.Zone == ZoneType.HeavyContainment);
+            var randomHeavy = Room.List.Where(x => x.Zone == ZoneType.HeavyContainment && x.RoomName != MapGeneration.RoomName.HczTesla);
             foreach (var player in players.Where(x=> x.CurrentRoom.Zone == ZoneType.LightContainment))
             {
                 var tp = randomHeavy.GetRandomValue();
@@ -162,6 +162,7 @@ namespace Realistic096
             var players = Player.List.Where(x=>x.IsHuman && x.IsAlive).ToList();
             if (players.Count() == 1)
             {
+                Main.Instance.Config.EventEnabled = false;
                 Exiled.API.Features.Broadcast broadcast = new Exiled.API.Features.Broadcast()
                 { 
                     Show = true,
@@ -175,7 +176,6 @@ namespace Realistic096
                     {
                         player.Broadcast(broadcast);
                     }
-                    Main.Instance.Config.EventEnabled = false;
                 });
                 MEC.Timing.KillCoroutines(_SCP096_TargetReflesh);
             }
